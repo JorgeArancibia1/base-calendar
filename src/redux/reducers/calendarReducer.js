@@ -1,18 +1,20 @@
 import { types } from "../types/types";
+import { moment } from "moment";
 
 const initialState = {
 	events: [
-		{
-			title: "Evento",
-			notes: "ooooo",
-			start: "2022-01-26T21:00:00.098Z",
-			end: "2022-01-26T22:00:00.098Z",
-			id: 1643227722395,
-			user: {
-				_id: "123",
-				name: "Fernando",
-			},
-		},
+		// {
+		// 	id: new Date().getTime(),
+		// 	title: "Cumpleaños del jefe",
+		// 	start: "",
+		// 	end: "",
+		// 	bgcolor: "#fafafa",
+		// 	notes: "Comprar el pastel",
+		// 	user: {
+		// 		_id: "123",
+		// 		name: "Fernando",
+		// 	},
+		// },
 	], // Aqui va la base de lo que se recibe en el payload
 	activeEvent: null,
 };
@@ -29,6 +31,12 @@ export const calendarReducer = (state = initialState, action) => {
 			return {
 				...state,
 				events: [...state.events, action.payload],
+			};
+
+		case types.eventClearActiveEvent:
+			return {
+				...state,
+				activeEvent: null,
 			};
 
 		default:

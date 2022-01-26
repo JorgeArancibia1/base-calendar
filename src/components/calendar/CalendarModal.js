@@ -25,7 +25,7 @@ const nowPlus1 = now.clone().add(1, "hours");
 export const CalendarModal = () => {
 	// const [isOpen, setIsOpen] = useState(true);
 
-	const { modalOpen } = useSelector( state => state.ui );
+	const { modalOpen } = useSelector((state) => state.ui);
 	const dispatch = useDispatch();
 
 	const [dateStart, setDateStart] = useState(now.toDate());
@@ -42,7 +42,7 @@ export const CalendarModal = () => {
 
 	const closeModal = () => {
 		// setIsOpen(false);
-		dispatch( uiCloseModal() );
+		dispatch(uiCloseModal());
 	};
 
 	const handleStartDateChange = (e) => {
@@ -84,7 +84,7 @@ export const CalendarModal = () => {
 
 	return (
 		<Modal
-			isOpen={ modalOpen }
+			isOpen={modalOpen}
 			// onAfterOpen={afterOpenModal}
 			onRequestClose={closeModal}
 			style={customStyles}

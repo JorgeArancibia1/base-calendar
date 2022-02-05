@@ -3,18 +3,18 @@ import { moment } from "moment";
 
 const initialState = {
 	events: [
-		// {
-		// 	id: new Date().getTime(),
-		// 	title: "Cumpleaños del jefe",
-		// 	start: "",
-		// 	end: "",
-		// 	bgcolor: "#fafafa",
-		// 	notes: "Comprar el pastel",
-		// 	user: {
-		// 		_id: "123",
-		// 		name: "Fernando",
-		// 	},
-		// },
+		{
+			id: new Date().getTime(),
+			title: "Cumpleaños del jefe",
+			// start: "",
+			// end: "",
+			bgcolor: "#fafafa",
+			notes: "Comprar el pastel",
+			user: {
+				_id: "123",
+				name: "Fernando",
+			},
+		},
 	], // Aqui va la base de lo que se recibe en el payload
 	activeEvent: null,
 };
@@ -37,6 +37,14 @@ export const calendarReducer = (state = initialState, action) => {
 			return {
 				...state,
 				activeEvent: null,
+			};
+
+		case types.eventUpdated:
+			return {
+				...state,
+				events: state.events.map((event) =>
+					event.id === action.payload.id ? action.payload : event
+				),
 			};
 
 		default:

@@ -1,23 +1,18 @@
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
-} from "react-router-dom";
-import { LoginScreen } from "../components/auth/LoginScreen";
-import { CalendarScreen } from "../components/calendar/CalendarScreen";
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { LoginScreen } from '../components/auth/LoginScreen';
+import { CalendarScreen } from '../components/calendar/CalendarScreen';
 
 export const AppRouter = () => {
 	return (
 		<Router>
 			<Switch>
-				<Route exact path="/loginScreen">
+				<Route exact path='/login'>
 					<LoginScreen />
 				</Route>
-				<Route path="/">
+				<Route path='/'>
 					<CalendarScreen />
 				</Route>
-				<Redirect to="/" />
+				<Redirect to='/' />
 			</Switch>
 		</Router>
 	);

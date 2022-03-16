@@ -90,7 +90,7 @@ export const CalendarModal = () => {
 		const momentStart = moment(start);
 		const momentEnd = moment(end);
 
-		if (momentStart.isSameOrAfter(momentEnd)) {
+		if (momentStart.isSameOrAfter(momentEnd, 'hour')) {
 			// Validacion para que la fecha fin sea siempre mayor a la de inicio
 			Swal.fire('error', 'La fecha de fin debe ser mayor a la fecha de inicio');
 		}

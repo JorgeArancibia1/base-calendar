@@ -8,7 +8,7 @@ import { uiCloseModal } from '../../redux/actions/ui';
 import {
 	eventClearActiveEvent,
 	eventStartAddNew,
-	eventUpdated,
+	eventStartUpdate,
 } from '../../redux/actions/events';
 
 const customStyles = {
@@ -35,8 +35,6 @@ const initEvent = {
 };
 
 export const CalendarModal = () => {
-	// const [isOpen, setIsOpen] = useState(true);
-
 	const { modalOpen } = useSelector((state) => state.ui);
 	const { activeEvent } = useSelector((state) => state.calendar);
 	const dispatch = useDispatch();
@@ -58,7 +56,6 @@ export const CalendarModal = () => {
 	}, [activeEvent, setFormValues]);
 
 	const closeModal = () => {
-		// setIsOpen(false);
 		dispatch(uiCloseModal());
 		dispatch(eventClearActiveEvent());
 		setFormValues(initEvent);
@@ -101,12 +98,14 @@ export const CalendarModal = () => {
 		if (title.trim().length < 2) return setTitleValid(false);
 
 		if (activeEvent) {
-			dispatch(eventUpdated(formValues));
+			dispatch(eventStartUpdate(formValues));
 		} else {
 			dispatch(eventStartAddNew(formValues));
 		}
-	};
 
+		setTitleValid(true);
+		closeModal();
+	};
 	return (
 		<Modal
 			isOpen={modalOpen}
@@ -125,7 +124,7 @@ export const CalendarModal = () => {
 					<label>Fecha y hora inicio</label>
 					<DateTimePicker
 						onChange={handleStartDateChange}
-						value={dateStart}
+						value={activeEvent ? activeEvent.start : dateStart}
 						className='form-control'
 					/>
 				</div>
@@ -135,7 +134,7 @@ export const CalendarModal = () => {
 					<DateTimePicker
 						onChange={handleEndDateChange}
 						value={dateEnd}
-						minDate={dateStart}
+						minDate={activeEvent ? activeEvent.end : dateEnd}
 						className='form-control'
 					/>
 				</div>

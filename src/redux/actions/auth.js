@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import { fetchConToken, fetchSinToken } from '../../helpers/fetch';
 import { types } from '../types/types';
+import { eventLogout } from './events';
 
 export const startLogin = (email, password) => {
 	// Se retorna otra función al ser una tarea asincrona.
@@ -12,7 +13,6 @@ export const startLogin = (email, password) => {
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime()); //Tiene 2 horas para que viva el token, graba fecha, minuto, hora y segundo.
-			console.log(body);
 			dispatch(
 				login({
 					uid: body.uid,
@@ -77,6 +77,7 @@ const login = (user) => ({
 export const startLogout = () => {
 	return (dispatch) => {
 		localStorage.clear();
+		dispatch(eventLogout());
 		dispatch(logout());
 	};
 };

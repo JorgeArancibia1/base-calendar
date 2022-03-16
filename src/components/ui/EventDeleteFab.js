@@ -1,15 +1,15 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { eventDeleted } from "../../redux/actions/events";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { eventStartDelete } from '../../redux/actions/events';
 
 export const EventDeleteFab = () => {
 	const dispatch = useDispatch();
 	const handleDelete = () => {
-		dispatch(eventDeleted());
+		dispatch(eventStartDelete());
 	};
 	return (
-		<button className="btn btn-danger fab-danger" onClick={handleDelete}>
+		<button type='button' className='btn btn-danger fab-danger' onClick={handleDelete}>
 			<FontAwesomeIcon icon={faTrash} />
 			<span>Borrar Evento</span>
 		</button>

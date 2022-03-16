@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { LoginScreen } from '../components/auth/LoginScreen';
 import { CalendarScreen } from '../components/calendar/CalendarScreen';
 import { useDispatch } from 'react-redux';
@@ -15,8 +15,6 @@ export const AppRouter = () => {
 	useEffect(() => {
 		dispatch(startChecking());
 	}, [dispatch]);
-
-	console.log(checking);
 
 	if (checking) {
 		return <h1>ESPERE...</h1>;

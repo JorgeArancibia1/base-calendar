@@ -84,3 +84,7 @@ body {
 	position: fixed;
 	left: 25px;
 }
+
+.react-datetime-picker__inputGroup input[type="datetime-local"] {
+  visibility: unset !important;
+}

@@ -134,7 +134,7 @@ export const CalendarModal = () => {
 					<DateTimePicker
 						onChange={handleEndDateChange}
 						value={dateEnd}
-						minDate={activeEvent ? activeEvent.end : dateEnd}
+						// minDate={activeEvent ? activeEvent.end : dateEnd}
 						className='form-control'
 					/>
 				</div>

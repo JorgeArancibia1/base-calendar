@@ -20,7 +20,7 @@ export const startLogin = (email, password) => {
 				})
 			);
 		} else {
-			Swal.fire('Error', body.msg, 'error');
+			Swal.fire('Error', body.msg , 'error');
 		}
 	};
 };

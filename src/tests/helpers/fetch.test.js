@@ -21,7 +21,7 @@ describe('Pruebas en el helper fetch', () => {
 
 		token = body.token
 
-		console.log(token);
+		// console.log(token);
 	});
 
 	test('Fetch con token debería funcionar', async () => {
@@ -32,8 +32,8 @@ describe('Pruebas en el helper fetch', () => {
 		const resp = await fetchConToken('events/62282c3f7d2ca8e28b0a8725', {}, 'DELETE')
 		const body = await resp.json();
 
-		expect( body.msg ).toBe('No existe un evento con ese id ')
+		expect(body.msg).toBe('No existe un evento con ese id ')
 
-		console.log(token);
+		// console.log(token);
 	});
 });

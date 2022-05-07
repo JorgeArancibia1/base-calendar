@@ -33,7 +33,7 @@ const fetchConToken = (endpoint, data, method = 'GET') => {
 		return fetch(url, {
 			method, // El método va a depender de lo que se mande como argumento
 			headers: {
-				'Content-type': 'application/json', // Esto determina que solo recibirá info tipo  'json'
+				'Content-type': 'application/json', // Esto determina que solo recibirá info tipo 'json'
 				'x-token': token,
 			},
 			body: JSON.stringify(data), // Se anexa la data como .JSON

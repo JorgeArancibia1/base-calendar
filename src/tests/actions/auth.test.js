@@ -42,7 +42,7 @@ describe('Pruebas en las acciones del auth', () => {
     expect(localStorage.setItem).toHaveBeenCalledWith('token', expect.any(String))
     expect(localStorage.setItem).toHaveBeenCalledWith('token-init-date', expect.any(Number))
 
-    token = localStorage.setItem.mock.calls[0][1]
+    // token = localStorage.setItem.mock.calls[0][1]
     // console.log(localStorage.setItem.mock.calls[0][1]);
 
   })
@@ -100,7 +100,7 @@ describe('Pruebas en las acciones del auth', () => {
 
   test('should StartChecking Funciona', async() => {
 
-    fetchModule.fetchCon Token = jest.fn(() => ({ // Si queremos que regrese un objeto json se hace desde el parametro de fn()))
+    fetchModule.fetchConToken = jest.fn(() => ({ // Si queremos que regrese un objeto json se hace desde el parametro de fn()))
       json() {
         return {
           ok: true,

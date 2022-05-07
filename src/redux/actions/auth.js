@@ -29,7 +29,7 @@ export const startRegister = (email, password, name) => {
 	return async (dispatch) => {
 		const resp = await fetchSinToken('auth/new', { email, password, name }, 'POST'); // api/auth -> data -> con metodo post
 		const body = await resp.json(); /// Si esta ok devuelve el 'name','ok', 'token', 'uid'
-		console.log(body);
+
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime()); //Tiene 2 horas para que viva el token, graba fecha, minuto, hora y segundo.

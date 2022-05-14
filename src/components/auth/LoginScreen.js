@@ -1,8 +1,8 @@
 import './login.css';
+import Swal from 'sweetalert2';
 import { useForm } from '../../hooks/useForm';
 import { useDispatch } from 'react-redux';
 import { startLogin, startRegister } from '../../redux/actions/auth';
-import Swal from 'sweetalert2';
 
 export const LoginScreen = () => {
 	const dispatch = useDispatch();

@@ -9,7 +9,6 @@ import '@testing-library/jest-dom';
 
 import { EventDeleteFab } from '../../../components/ui/EventDeleteFab';
 import { eventStartDelete } from '../../../redux/actions/events';
-import { fn } from 'moment';
 
 // TRANSFORMAR LA ACCIÓN A UN MOCK COMPLETO PARA LA PRUEBA
 jest.mock('../../../redux/actions/events', () => ({

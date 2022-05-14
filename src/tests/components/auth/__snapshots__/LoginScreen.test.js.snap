@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pruevas en el <AppRouter /> Debe mostrar el espere 1`] = `
-<h1>
-  ESPERE...
-</h1>
-`;
-
-exports[`Pruevas en el <AppRouter /> Debe mostrar la ruta pública (Login) 1`] = `
+exports[`Pruebas en <LoginScreen /> Debe mostrarse correctamente 1`] = `
 <div
   className="container login-container"
 >

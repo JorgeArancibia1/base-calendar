@@ -34,7 +34,6 @@ export const LoginScreen = () => {
 			return Swal.fire('Error', 'Las contraseñas deben ser iguales', 'error');
 		}
 
-		console.log(rName);
 		dispatch(startRegister(rEmail, rPassword1, rName));
 	};
 

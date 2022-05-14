@@ -62,4 +62,8 @@ describe('Pruebas en <LoginScreen />', () => {
 
     expect(startLogin).toHaveBeenCalledWith('juan@gmail.com', '1234567')
   })
+
+  test('No debe haber registro si las contraseñas son diferentes', () => {
+
+  })
 })

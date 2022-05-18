@@ -8,11 +8,18 @@ import thunk from 'redux-thunk';
 import '@testing-library/jest-dom';
 
 import { CalendarScreen } from '../../../components/calendar/CalendarScreen';
+import { messages } from '../../../helpers/calendar-messages-es';
+import { types } from '../../../redux/types/types';
+import { eventSetActive, eventStartLoading } from '../../../redux/actions/events';
+import { act } from '@testing-library/react';
 
 // TRANSFORMAR LA ACCIÓN A UN MOCK COMPLETO PARA LA PRUEBA
-// jest.mock('../../../redux/actions/events', () => ({
-//   eventStartDelete: jest.fn()
-// }))
+jest.mock('../../../redux/actions/events', () => ({
+  eventStartLoading: jest.fn(),
+  eventSetActive: jest.fn()
+}))
+
+Storage.prototype.setItem = jest.fn()
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
@@ -45,5 +52,22 @@ describe('Pruebas en CalendarScreen', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
-  // test('pruebas con interacciones del calendario', () => { second })
+  //Con este mismo test se pueden hacer pruebas a todos los demás elementos
+  test('pruebas con interacciones del calendario', () => {
+    const calendar = wrapper.find('Calendar')
+
+    const calendarMessages = calendar.prop('messages')
+    expect(calendarMessages).toEqual(messages)
+
+    calendar.prop('onDoubleClickEvent')()
+    expect(store.dispatch).toHaveBeenCalledWith({ type: types.uiOpenModal })
+
+    calendar.prop('onSelectEvent')({ start: 'Algo' })
+    expect(eventSetActive).toHaveBeenCalledWith({ start: 'Algo' })
+
+    act(() => {
+      calendar.prop('onView')('week')
+      expect(localStorage.setItem).toHaveBeenLastCalledWith('lastview', 'week')
+    })
+  })
 })

@@ -9,7 +9,12 @@ import thunk from 'redux-thunk';
 import '@testing-library/jest-dom';
 
 import { CalendarModal } from '../../../components/calendar/CalendarModal';
+import { eventStartUpdate, eventClearActiveEvent } from '../../../redux/actions/events';
 
+jest.mock('../../../redux/actions/events', () => ({
+  eventStartUpdate: jest.fn(),
+  eventClearActiveEvent: jest.fn()
+}))
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
@@ -47,8 +52,30 @@ const wrapper = mount(
 
 describe('Pruebas en <CalendarModal />', () => {
 
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   test('Debe mostrar el modal', () => {
     expect(wrapper.find('Modal').prop('isOpen')).toBe(true)
+  })
+
+  test('Debe llamar la acción de actualizar y cerrar el modal', () => {
+
+    wrapper.find('form').simulate('submit', {
+      preventDefault() { }
+    })
+
+    expect(eventStartUpdate).toHaveBeenCalledWith(initState.calendar.activeEvent)
+    expect(eventClearActiveEvent).toHaveBeenCalled()
+  })
+
+  test('Debe mostrar error si falta el titulo del agendamiento', () => {
+    wrapper.find('form').simulate('submit', {
+      preventDefault() { }
+    })
+
+    expect(wrapper.find('input[name="title"]').hasClass('is-invalid')).toBe(true)
   })
 
 })
